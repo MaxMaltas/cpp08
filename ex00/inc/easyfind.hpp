@@ -3,13 +3,19 @@
 
 #include <iostream>
 #include <vector>
+#include <iterator>
+#include <algorithm>
 
 template <typename T>
-void easyfind(T arr, int b)
+typename T::iterator easyfind(T arr, int b)
 {
 	//std::vector<int> arr;
-	auto iterFound = find(arr.begin(), arr.end(), b); 
-
+	typename T::iterator iterFound = std::find(arr.begin(), arr.end(), b);
+	if (iterFound == arr.end())
+			throw std::runtime_error("Element not found");
+	else
+			std::cout << "Element " << *iterFound << " founded" << std::endl;
+	return iterFound;
 }
 
 #endif
